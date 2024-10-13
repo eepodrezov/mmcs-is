@@ -34,8 +34,10 @@ void dfs(const Graph& graph, int node, vector<bool>& visited) {
     }
 }
 
+#include <iomanip> 
+
 /**
- * Функция для тестирования алгоритма поиска в глубину.
+ * Функция для тестирования алгоритма поиска в глубину (DFS).
  *
  * @param graph Входной параметр - граф для тестирования.
  * @param expectedOutput Ожидаемый результат выполнения DFS.
@@ -51,7 +53,7 @@ void testDFS(const Graph& graph, const vector<int>& expectedOutput) {
 
     // Завершаем замер времени выполнения
     auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double> duration = end - start;
+    chrono::duration<double, milli> duration = end - start; // Получаем время в миллисекундах
 
     // Проверка на соответствие ожидаемому результату
     bool testPassed = true;
@@ -64,9 +66,12 @@ void testDFS(const Graph& graph, const vector<int>& expectedOutput) {
 
     // Вывод результата теста
     cout << (testPassed ? "Тест пройден" : "Тест не пройден") << endl;
-    cout << "Время выполнения: " << duration.count() << " секунд." << endl;
+
+    // Вывод времени выполнения в миллисекундах с округлением до 2 знаков после запятой
+    cout << "Время выполнения: " << fixed << setprecision(4) << duration.count() << " мс." << endl;
     cout << "----------------------------------------" << endl;
 }
+
 
 int main() {
     // Массив из 5 объектов входных значений (графов) и ожидаемых результатов
